@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sourav Jha - Law Office | Expert Legal Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #d69e2e;
+            --text-dark: #2d3748;
+            --text-light: #718096;
+            --bg-light: #f7fafc;
+            --white: #ffffff;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        header {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-color);
+            transition: 0.3s;
+        }
+
+        /* Page Content */
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+            font-weight: 300;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.8;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            background: #b7791f;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent-color);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 0;
+            background: var(--bg-light);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .profile-placeholder {
+            width: 300px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            margin: 0 auto;
+            box-shadow: var(--shadow);
+        }
+
+        .credentials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .credential-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .credential-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Blog Section */
+        .blog {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .blog-card {
+            background: var(--bg-light);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .blog-image {
+            height: 200px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.1rem;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-date {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .blog-card h3 {
+            color: var(--primary-color);
+            margin: 0.5rem 0 1rem;
+            font-size: 1.3rem;
+        }
+
+        .blog-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .read-more {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            display: inline-block;
+            transition: color 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: var(--primary-color);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            font-size: 1.2rem;
+            margin-right: 1rem;
+            color: var(--accent-color);
+            width: 20px;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: var(--white);
+            transform: scale(1.02);
+        }
+
+        .submit-btn {
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: #b7791f;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: var(--text-light);
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--white);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links a {
+                padding: 1rem;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid var(--bg-light);
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .services-grid,
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-placeholder {
+                width: 250px;
+                height: 300px;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.6s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="blog.html" class="logo">Sourav Jha</a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#" data-page="home" class="nav-link active">Home</a></li>
+                <li><a href="#" data-page="services" class="nav-link">Services</a></li>
+                <li><a href="#" data-page="about" class="nav-link">About</a></li>
+                <li><a href="#" data-page="blog" class="nav-link">Blog</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Home Page -->
+    <div class="page active" id="home">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Sourav Jha</h1>
+                    <div class="subtitle">Expert Legal Counsel</div>
+                    <p>Providing comprehensive legal services with integrity, expertise, and dedication. Your trusted partner in navigating complex legal matters with confidence and peace of mind.</p>
+                    <a href="#" class="cta-button" data-page="about">Learn More About Me</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Preview -->
+        <section class="services">
+            <div class="container">
+                <h2 class="section-title fade-in">Legal Services</h2>
+                <div class="services-grid">
+                    <div class="service-card fade-in">
+                        <div class="service-icon">⚖️</div>
+                        <h3>Civil Litigation</h3>
+                        <p>Expert representation in civil disputes, contract matters, and commercial litigation with a focus on achieving favorable outcomes.</p>
+                    </div>
+                    <div class="service-card fade-in">
+                        <div class="service-icon">🏢</div>
+                        <h3>Corporate Law</h3>
+                        <p>Comprehensive corporate legal services including business formation, compliance, mergers, and corporate governance.</p>
+                    </div>
+                    <div class="service-card fade-in">
+                        <div class="service-icon">👥</div>
+                        <h3>Family Law</h3>
+                        <p>Sensitive handling of family matters including divorce, child custody, adoption, and domestic relations.</p>
+                    </div>
+                    <div class="service-card fade-in">
+                        <div class="service-icon">🏠</div>
+                        <h3>Real Estate Law</h3>
+                        <p>Complete real estate legal services from property transactions to landlord-tenant disputes and zoning matters.</p>
+                    </div>
+                    <div class="service-card fade-in">
+                        <div class="service-icon">⚖️</div>
+                        <h3>Criminal Defense</h3>
+                        <p>Aggressive criminal defense representation protecting your rights and fighting for the best possible outcome.</p>
+                    </div>
+                    <div class="service-card fade-in">
+                        <div class="service-icon">📋</div>
+                        <h3>Legal Consultation</h3>
+                        <p>Professional legal advice and consultation services to help you understand your rights and legal options.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact">
+            <div class="container">
+                <h2 class="section-title" style="color: white;">Get In Touch</h2>
+                <div class="contact-content">
+                    <div class="contact-info slide-in-left">
+                        <h3>Contact Information</h3>
+                        <div class="contact-item">
+                            <i>📍</i>
+                            <div>
+                                <strong>Address:</strong><br>
+                                Gaya, Bihar, India
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i>📞</i>
+                            <div>
+                                <strong>Phone:</strong><br>
+                                +91 XXXXX XXXXX
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i>✉️</i>
+                            <div>
+                                <strong>Email:</strong><br>
+                                sourav.jha@lawoffice.com
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i>🕒</i>
+                            <div>
+                                <strong>Office Hours:</strong><br>
+                                Mon-Fri: 9:00 AM - 6:00 PM<br>
+                                Sat: 10:00 AM - 2:00 PM
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form slide-in-right">
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Services Page -->
+    <div class="page" id="services">
+        <section class="services" style="padding-top: 4rem;">
+            <div class="container">
+                <h2 class="section-title">Our Legal Services</h2>
+                <p style="text-align: center; max-width: 800px; margin: 0 auto 4rem; font-size: 1.1rem; color: var(--text-light);">
+                    With years of experience and a commitment to excellence, I provide comprehensive legal services tailored to meet your specific needs. Each case is handled with meticulous attention to detail and unwavering dedication.
+                </p>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">⚖️</div>
+                        <h3>Civil Litigation</h3>
+                        <p>Experienced representation in complex civil matters including contract disputes, tort claims, business litigation, and appellate advocacy. I work tirelessly to protect your interests and achieve favorable resolutions through negotiation or trial.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🏢</div>
+                        <h3>Corporate & Business Law</h3>
+                        <p>Complete corporate legal services from business formation and structuring to compliance, contracts, mergers and acquisitions. I help businesses navigate legal complexities while focusing on growth and operational efficiency.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">👥</div>
+                        <h3>Family Law</h3>
+                        <p>Compassionate yet strong advocacy in family law matters including divorce, child custody and support, spousal support, property division, adoption, and domestic violence protection. Your family's future is my priority.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🏠</div>
+                        <h3>Real Estate Law</h3>
+                        <p>Full-service real estate legal representation covering residential and commercial transactions, title issues, landlord-tenant disputes, zoning matters, and real estate litigation. Ensuring smooth property transactions every time.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">⚖️</div>
+                        <h3>Criminal Defense</h3>
+                        <p>Aggressive criminal defense representation for misdemeanors and felonies. I protect your constitutional rights and work relentlessly to achieve the best possible outcome, whether through negotiation or trial advocacy.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">📋</div>
+                        <h3>Estate Planning</h3>
+                        <p>Comprehensive estate planning services including wills, trusts, probate administration, and succession planning. Protecting your legacy and ensuring your wishes are carried out according to your intentions.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🤝</div>
+                        <h3>Employment Law</h3>
+                        <p>Representation for both employers and employees in workplace disputes, discrimination claims, wrongful termination, contract negotiations, and employment compliance matters.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">💼</div>
+                        <h3>Personal Injury</h3>
+                        <p>Dedicated advocacy for accident victims seeking compensation for injuries caused by negligence. No fees unless we win your case. Maximum recovery is always the goal.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">📊</div>
+                        <h3>Legal Consultation</h3>
+                        <p>Professional legal consultation services to help you understand your rights, assess your legal options, and develop strategic approaches to your legal challenges. Prevention is often the best protection.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div class="page" id="about">
+        <section class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text slide-in-left">
+                        <h2>About Sourav Jha</h2>
+                        <p>With over a decade of experience in legal practice, I have dedicated my career to providing exceptional legal representation and counsel to individuals, families, and businesses throughout Bihar and beyond.</p>
+                        
+                        <p>My approach to law is built on the foundation of integrity, thorough preparation, and aggressive advocacy. I believe that every client deserves personalized attention and strategic legal solutions tailored to their unique circumstances.</p>
+                        
+                        <p>Whether you're facing a complex business transaction, family legal matter, or need criminal defense representation, I bring the same level of commitment and expertise to every case. My goal is not just to resolve your legal issues, but to provide you with the peace of mind that comes from knowing you have experienced counsel in your corner.</p>
+                        
+                        <p>I stay current with evolving legal trends and precedents to ensure that my clients receive the most effective representation available. Your success is my success, and I work tirelessly to achieve the best possible outcomes.</p>
+                    </div>
+                    <div class="about-image slide-in-right">
+                        <div class="profile-placeholder">
+                            Professional Photo<br>
+                            Sourav Jha, Esq.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="credentials fade-in">
+                    <div class="credential-item">
+                        <h4>Education</h4>
+                        <p>LL.B. from prestigious law school with honors in Constitutional Law</p>
+                    </div>
+                    <div class="credential-item">
+                        <h4>Bar Admission</h4>
+                        <p>Licensed to practice in Bihar State Courts and High Court</p>
+                    </div>
+                    <div class="credential-item">
+                        <h4>Experience</h4>
+                        <p>10+ years of successful legal practice across multiple practice areas</p>
+                    </div>
+                    <div class="credential-item">
+                        <h4>Recognition</h4>
+                        <p>Member of Bihar Bar Association and recognized legal professional</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Blog Page -->
+    <div class="page" id="blog">
+        <section class="blog">
+            <div class="container">
+                <h2 class="section-title">Legal Insights & Updates</h2>
+                <p style="text-align: center; max-width: 800px; margin: 0 auto 4rem; font-size: 1.1rem; color: var(--text-light);">
+                    Stay informed with the latest legal developments, case studies, and practical advice. Knowledge is power, and understanding your legal rights is the first step toward protecting them.
+                </p>
+                
+                <div class="blog-grid">
+                    <article class="blog-card fade-in">
+                        <div class="blog-image">
+                            Legal Article Image
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-date">June 15, 2025</div>
+                            <h3>Understanding Your Rights in Civil Litigation</h3>
+                            <p>Civil litigation can be complex and intimidating. This comprehensive guide explains your fundamental rights during the litigation process and how to protect your interests effectively...</p>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </article>
+                    
+                    <article class="blog-card fade-in">
+                        <div class="blog-image">
+                            Corporate Law Update
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-date">June 10, 2025</div>
+                            <h3>New Corporate Compliance Requirements in 2025</h3>
+                            <p>Recent changes in corporate law have introduced new compliance requirements for businesses. Learn about the key changes and how they may affect your business operations...</p>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </article>
+                    
+                    <article class="blog-card fade-in">
+                        <div class="blog-image">
+                            Family Law Insights
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-date">June 5, 2025</div>
+                            <h3>Child Custody Laws: What Parents Need to Know</h3>
+                            <p>Navigating child custody disputes requires understanding of current laws and court preferences. This article provides essential information for parents going through custody proceedings...</p>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </article>
+                    
+                    <article class="blog-card fade-in">
+                        <div class="blog-image">
+                            Real Estate Legal Guide
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-date">May 28, 2025</div>
+                            <h3>Real Estate Transaction Pitfalls to Avoid</h3>
+                            <p>Real estate transactions involve significant financial investments and legal complexities. Learn about common pitfalls and how proper legal guidance can protect your investment...</p>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </article>
+                    
+                    <article class="blog-card fade-in">
+                        <div class="blog-image">
+                            Criminal Defense Rights
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-date">May 20, 2025</div>
+                            <h3>Your Constitutional Rights During Criminal Proceedings</h3>
+                            <p>Understanding your constitutional rights is crucial when facing criminal charges. This comprehensive overview explains your rights and the importance of experienced legal representation...</p>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </article>
+                    
+                    <article class="blog-card fade-in">
+                        <div class="blog-image">
+                            Legal Technology Trends
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-date">May 15, 2025</div>
+                            <h3>How Technology is Transforming Legal Practice</h3>
+                            <p>The legal profession is evolving with technological advances. Explore how modern technology is improving legal services and what it means for clients seeking legal representation...</p>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Sourav Jha Law Office</h4>
+                    <p>Providing expert legal counsel with integrity, dedication, and results. Your trusted partner in navigating complex legal matters.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Practice Areas</h4>
+                    <p><a href="#">Civil Litigation</a></p>
+                    <p><a href="#">Corporate Law</a></p>
+                    <p><a href="#">Family Law</a></p>
+                    <p><a href="#">Real Estate Law</a></p>
+                    <p><a href="#">Criminal Defense</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p>📍 Gaya, Bihar, India</p>
+                    <p>📞 +91 XXXXX XXXXX</p>
+                    <p>✉️ sourav.jha@lawoffice.com</p>
+                    <p>🕒 Mon-Fri: 9AM-6PM</p>
+                </div>
+            </div>
+            <p>&copy; 2025 Sourav Jha. All rights reserved. </p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pages = document.querySelectorAll('.page');
+        const hamburger = document.getElementById('hamburger');
+        const navLinksContainer = document.getElementById('nav-links');
+
+        // Page navigation
+        function showPage(pageId) {
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector(`[data-page="${pageId}"]`).classList.add('active');
+            
+            // Close mobile menu
+            navLinksContainer.classList.remove('active');
+            
+            // Trigger animations for the new page
+            setTimeout(() => {
+                handleScrollAnimations();
+            }, 100);
+        }
+
+        // Navigation event listeners
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageId = link.getAttribute('data-page');
+                showPage(pageId);
+            });
+        });
+
+        // CTA button navigation
+        document.querySelector('.cta-button').addEventListener('click', (e) => {
+            e.preventDefault();
+            const pageId = e.target.getAttribute('data-page');
+            if (pageId) {
+                showPage(pageId);
+            }
+        });
+
+        // Mobile hamburger menu
+        hamburger.addEventListener('click', () => {
+            navLinksContainer.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav')) {
+                navLinksContainer.classList.remove('active');
+            }
+        });
+
+        // Scroll animations
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Initial scroll animation check
+        window.addEventListener('scroll', handleScrollAnimations);
+        window.addEventListener('load', handleScrollAnimations);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#' || this.hasAttribute('data-page')) {
+                    return; // Let page navigation handle it
+                }
+                
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Contact form handling
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            // Show loading state
+            submitBtn.textContent = 'Sending Message...';
+            submitBtn.style.background = '#28a745';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                submitBtn.textContent = 'Message Sent Successfully!';
+                submitBtn.style.background = '#28a745';
+                
+                // Reset form after showing success
+                setTimeout(() => {
+                    this.reset();
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.background = 'var(--accent-color)';
+                    submitBtn.disabled = false;
+                }, 3000);
+            }, 2000);
+        });
+
+        // Service card interactions
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Blog card interactions
+        document.querySelectorAll('.blog-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (!e.target.closest('.read-more')) {
+                    // Simulate opening blog post
+                    const title = this.querySelector('h3').textContent;
+                    alert(`Opening blog post: "${title}"\n\nThis would typically navigate to the full blog post page.`);
+                }
+            });
+        });
+
+        // Read more button handling
+        document.querySelectorAll('.read-more').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const title = this.closest('.blog-card').querySelector('h3').textContent;
+                alert(`Reading full article: "${title}"\n\nThis would typically open the complete blog post.`);
+            });
+        });
+
+        // Header scroll effect
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+        
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scrolling down
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                // Scrolling up
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+
+        // Add typing effect to hero subtitle
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.textContent = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            
+            type();
+        }
+
+        // Initialize typing effect on page load
+        window.addEventListener('load', () => {
+            const subtitle = document.querySelector('.hero .subtitle');
+            if (subtitle) {
+                const originalText = subtitle.textContent;
+                setTimeout(() => {
+                    typeWriter(subtitle, originalText, 150);
+                }, 1000);
+            }
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero');
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            
+            if (hero) {
+                hero.style.transform = `translateY(${rate}px)`;
+            }
+        });
+
+        // Add click ripple effect to buttons
+        document.querySelectorAll('.cta-button, .submit-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255, 255, 255, 0.3);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s linear;
+                    pointer-events: none;
+                `;
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Add ripple animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize animations on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            handleScrollAnimations();
+        });
+    </script>
+</body>
+</html>
+                        
