@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Insights Blog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        main {
+            padding: 4rem 0;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 2rem;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .category {
+            background: #667eea;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .blog-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1a365d;
+            line-height: 1.3;
+        }
+
+        .blog-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .read-more {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .featured-article {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border-left: 5px solid #667eea;
+        }
+
+        .featured-article h2 {
+            color: #1a365d;
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter {
+            background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .newsletter h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 400px;
+            margin: 2rem auto 0;
+        }
+
+        .newsletter input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+        }
+
+        .newsletter button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter button:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: #1a365d;
+            color: white;
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            width: 90%;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>LegalInsights</h1>
+                    <p>Professional Legal Commentary & Analysis</p>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#articles">Articles</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Stay Informed on Legal Developments</h2>
+            <p>Expert analysis, case studies, and insights into the evolving world of law</p>
+        </div>
+    </section>
+
+    <main class="container" id="articles">
+        <div class="featured-article">
+            <h2>Understanding Digital Privacy Rights in 2025</h2>
+            <div class="card-meta">
+                <span class="category">Privacy Law</span>
+                <span>June 15, 2025</span>
+            </div>
+            <p>The landscape of digital privacy continues to evolve rapidly with new legislation and court decisions shaping how personal data is protected. Recent developments in state privacy laws and federal proposals signal a significant shift in how courts and lawmakers approach digital rights...</p>
+            <button class="read-more" onclick="openModal('featured')">Read Full Article</button>
+        </div>
+
+        <div class="blog-grid">
+            <article class="blog-card" onclick="openModal('corporate')">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDQwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjNjY3ZWVhIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Q29ycG9yYXRlIExhdyBVcGRhdGU8L3RleHQ+Cjwvc3ZnPgo=" alt="Corporate Law">
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span class="category">Corporate</span>
+                        <span>June 12, 2025</span>
+                    </div>
+                    <h3>New SEC Regulations Impact Corporate Disclosure Requirements</h3>
+                    <p>Recent changes to SEC disclosure rules are reshaping how public companies report material information to shareholders and the market...</p>
+                    <button class="read-more">Read More</button>
+                </div>
+            </article>
+
+            <article class="blog-card" onclick="openModal('employment')">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDQwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjNzY0YmEyIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+RW1wbG95bWVudCBMYXc8L3RleHQ+Cjwvc3ZnPgo=" alt="Employment Law">
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span class="category">Employment</span>
+                        <span>June 10, 2025</span>
+                    </div>
+                    <h3>Remote Work Legal Framework: Rights and Responsibilities</h3>
+                    <p>As remote work becomes permanent for many organizations, understanding the legal implications for both employers and employees is crucial...</p>
+                    <button class="read-more">Read More</button>
+                </div>
+            </article>
+
+            <article class="blog-card" onclick="openModal('intellectual')">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDQwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjMmQ1YTg3Ii8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+SW50ZWxsZWN0dWFsIFByb3BlcnR5PC90ZXh0Pgo8L3N2Zz4K" alt="IP Law">
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span class="category">IP Law</span>
+                        <span>June 8, 2025</span>
+                    </div>
+                    <h3>AI and Patent Law: Navigating Uncharted Territory</h3>
+                    <p>The intersection of artificial intelligence and intellectual property law presents new challenges for inventors, companies, and legal practitioners...</p>
+                    <button class="read-more">Read More</button>
+                </div>
+            </article>
+
+            <article class="blog-card" onclick="openModal('litigation')">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDQwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjMWEzNjVkIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+TGl0aWdhdGlvbiBTdHJhdGVneQ==IEFpYWwiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+TGl0aWdhdGlvbjwvdGV4dD4KPHN2Zz4K" alt="Litigation">
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span class="category">Litigation</span>
+                        <span>June 5, 2025</span>
+                    </div>
+                    <h3>E-Discovery Best Practices in Modern Litigation</h3>
+                    <p>Effective e-discovery strategies can make or break a case. Learn about the latest tools and techniques for managing electronic evidence...</p>
+                    <button class="read-more">Read More</button>
+                </div>
+            </article>
+
+            <article class="blog-card" onclick="openModal('regulatory')">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDQwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjNTk0MmE1Ii8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+UmVndWxhdG9yeSBDb21wbGlhbmNlPC90ZXh0Pgo8L3N2Zz4K" alt="Regulatory">
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span class="category">Regulatory</span>
+                        <span>June 3, 2025</span>
+                    </div>
+                    <h3>Financial Services Compliance: 2025 Updates</h3>
+                    <p>New regulatory requirements in the financial sector require immediate attention from compliance officers and legal teams...</p>
+                    <button class="read-more">Read More</button>
+                </div>
+            </article>
+
+            <article class="blog-card" onclick="openModal('contract')">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDQwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjNGE5MGU2Ii8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Q29udHJhY3QgTGF3PC90ZXh0Pgo8L3N2Zz4K" alt="Contract Law">
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span class="category">Contracts</span>
+                        <span>June 1, 2025</span>
+                    </div>
+                    <h3>Smart Contracts: Legal Validity and Enforcement</h3>
+                    <p>As blockchain technology matures, understanding the legal framework surrounding smart contracts becomes increasingly important...</p>
+                    <button class="read-more">Read More</button>
+                </div>
+            </article>
+        </div>
+
+        <div class="newsletter">
+            <h3>Stay Updated</h3>
+            <p>Subscribe to our newsletter for the latest legal insights and analysis</p>
+            <div class="newsletter-form">
+                <input type="email" placeholder="Enter your email">
+                <button type="submit">Subscribe</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal for article content -->
+    <div id="articleModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <div id="modalContent">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <footer id="about">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About LegalInsights</h4>
+                    <p>Providing expert legal analysis and commentary on the most important developments in law and regulation.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Practice Areas</h4>
+                    <ul>
+                        <li><a href="#">Corporate Law</a></li>
+                        <li><a href="#">Employment Law</a></li>
+                        <li><a href="#">Intellectual Property</a></li>
+                        <li><a href="#">Litigation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section" id="contact">
+                    <h4>Contact</h4>
+                    <p>Email: info@legalinsights.com</p>
+                    <p>Phone: (555) 123-4567</p>
+                    <p>Address: 123 Legal Plaza, Suite 400</p>
+                </div>
+            </div>
+            <hr style="margin: 2rem 0; border: none; border-top: 1px solid #333;">
+            <p>&copy; 2025 LegalInsights. All rights reserved. | <a href="#" style="color: #667eea;">Privacy Policy</a> | <a href="#" style="color: #667eea;">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <script>
+        const articles = {
+            featured: {
+                title: "Understanding Digital Privacy Rights in 2025",
+                category: "Privacy Law",
+                date: "June 15, 2025",
+                content: `
+                    <p>The landscape of digital privacy continues to evolve rapidly with new legislation and court decisions shaping how personal data is protected. Recent developments in state privacy laws and federal proposals signal a significant shift in how courts and lawmakers approach digital rights.</p>
+                    
+                    <h3>Key Developments</h3>
+                    <p>Several states have enacted comprehensive privacy legislation modeled after the California Consumer Privacy Act (CCPA) and the European Union's General Data Protection Regulation (GDPR). These laws grant consumers unprecedented control over their personal information, including the right to know what data is collected, the right to delete personal information, and the right to opt-out of the sale of personal information.</p>
+                    
+                    <h3>Impact on Businesses</h3>
+                    <p>Organizations must now implement robust privacy programs that include regular privacy impact assessments, comprehensive data mapping, and clear privacy policies. The cost of non-compliance can be substantial, with some jurisdictions imposing fines of up to 4% of annual global revenue.</p>
+                    
+                    <h3>Looking Forward</h3>
+                    <p>As technology continues to advance, privacy law will need to adapt to address emerging challenges such as artificial intelligence, biometric data collection, and the Internet of Things. Legal practitioners must stay current with these developments to effectively counsel their clients.</p>
+                `
+            },
+            corporate: {
+                title: "New SEC Regulations Impact Corporate Disclosure Requirements",
+                category: "Corporate",
+                date: "June 12, 2025",
+                content: `
+                    <p>The Securities and Exchange Commission has introduced significant changes to corporate disclosure requirements that will affect how public companies communicate with shareholders and the broader market.</p>
+                    
+                    <h3>Enhanced ESG Reporting</h3>
+                    <p>Companies must now provide detailed environmental, social, and governance (ESG) metrics in their annual reports. This includes climate risk assessments, diversity statistics, and supply chain transparency measures.</p>
+                    
+                    <h3>Real-Time Disclosure Requirements</h3>
+                    <p>Material events must now be disclosed within 24 hours rather than the previous four-day window. This accelerated timeline requires companies to have robust internal processes for identifying and reporting material information.</p>
+                    
+                    <h3>Compliance Strategies</h3>
+                    <p>Organizations should conduct a comprehensive review of their disclosure policies and procedures, implement enhanced monitoring systems, and ensure that all relevant personnel are trained on the new requirements.</p>
+                `
+            },
+            employment: {
+                title: "Remote Work Legal Framework: Rights and Responsibilities",
+                category: "Employment",
+                date: "June 10, 2025",
+                content: `
+                    <p>As remote work transitions from a temporary pandemic measure to a permanent fixture of the modern workplace, both employers and employees must navigate a complex web of legal considerations.</p>
+                    
+                    <h3>Jurisdictional Challenges</h3>
+                    <p>When employees work from different states or countries, determining which laws apply can be complicated. Employers must consider wage and hour laws, tax implications, and workers' compensation requirements in each jurisdiction where employees are located.</p>
+                    
+                    <h3>Privacy and Monitoring</h3>
+                    <p>Employers have legitimate interests in monitoring productivity and protecting confidential information, but they must balance these needs with employee privacy rights. Clear policies regarding monitoring software, data access, and personal device use are essential.</p>
+                    
+                    <h3>Best Practices</h3>
+                    <p>Successful remote work programs require comprehensive policies addressing equipment provision, expense reimbursement, performance standards, and communication protocols. Regular review and updates of these policies ensure compliance with evolving legal requirements.</p>
+                `
+            },
+            intellectual: {
+                title: "AI and Patent Law: Navigating Uncharted Territory",
+                category: "IP Law",
+                date: "June 8, 2025",
+                content: `
+                    <p>The rapid advancement of artificial intelligence technology is creating unprecedented challenges for patent law, forcing courts and patent offices to grapple with fundamental questions about inventorship and patentability.</p>
+                    
+                    <h3>AI as Inventor</h3>
+                    <p>Recent cases have addressed whether artificial intelligence systems can be named as inventors on patent applications. While most jurisdictions currently require human inventors, the debate continues as AI becomes more sophisticated.</p>
+                    
+                    <h3>Patentability of AI Innovations</h3>
+                    <p>Determining what aspects of AI technology are patentable requires careful analysis of abstract idea exceptions and the specific technical improvements provided by the innovation. Machine learning algorithms, neural network architectures, and training methodologies may all be patentable under the right circumstances.</p>
+                    
+                    <h3>Strategic Considerations</h3>
+                    <p>Companies developing AI technology should implement comprehensive intellectual property strategies that include patent protection for novel algorithms, trade secret protection for proprietary data sets, and copyright protection for software implementations.</p>
+                `
+            },
+            litigation: {
+                title: "E-Discovery Best Practices in Modern Litigation",
+                category: "Litigation",
+                date: "June 5, 2025",
+                content: `
+                    <p>Electronic discovery has become one of the most critical and expensive aspects of modern litigation. Effective e-discovery strategies can significantly impact case outcomes while controlling costs.</p>
+                    
+                    <h3>Early Case Assessment</h3>
+                    <p>Conducting thorough early case assessment helps identify key custodians, relevant time periods, and potential data sources. This analysis enables more targeted preservation notices and collection strategies, reducing overall costs and the risk of sanctions.</p>
+                    
+                    <h3>Technology-Assisted Review</h3>
+                    <p>Advanced analytics tools, including predictive coding and machine learning algorithms, can dramatically reduce the time and cost associated with document review. However, these tools require careful validation and ongoing quality control measures.</p>
+                    
+                    <h3>Proportionality and Cooperation</h3>
+                    <p>Courts increasingly expect parties to engage in meaningful meet-and-confer discussions about e-discovery protocols. Demonstrating proportionality in discovery requests and being willing to compromise on scope can lead to more favorable rulings and cost savings.</p>
+                `
+            },
+            regulatory: {
+                title: "Financial Services Compliance: 2025 Updates",
+                category: "Regulatory",
+                date: "June 3, 2025",
+                content: `
+                    <p>The financial services industry faces an evolving regulatory landscape with new requirements addressing digital assets, consumer protection, and systemic risk management.</p>
+                    
+                    <h3>Digital Asset Regulations</h3>
+                    
